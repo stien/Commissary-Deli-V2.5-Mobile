@@ -1,0 +1,6 @@
+module Pods_Commissary_Deli {
+  umbrella header "Pods-Commissary Deli-umbrella.h"
+
+  export *
+  module * { export * }
+}
