@@ -3,7 +3,7 @@ import NavigationServices from './navigation';
 import {mainStack} from 'src/config/navigator';
 
 function action(data) {
-  // console.log('DATA',data)
+  console.log('DATA',data)
   console.log('action here',data)
   if (data && data.type && data.id) {
     const {type, id} = data;

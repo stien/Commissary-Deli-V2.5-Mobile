@@ -9,6 +9,7 @@ import { Platform } from 'react-native';
  * @returns {Promise<R>}
  */
 const get = (url, options = {}) => {
+  console.log(' GET ', options)
   return new Promise((resolve, reject) => {
     let baseURL = configApi.API_ENDPOINT + '/wp-json' + url;
 
@@ -41,7 +42,7 @@ const get = (url, options = {}) => {
           reject(new Error(data.message));
         } else {
           resolve(data);
-          console.log('ALL -- dataaaa',data)
+          console.log('ALL -- dataaaa 2',data)
         }
       })
       .catch((error) => {
@@ -58,6 +59,8 @@ const get = (url, options = {}) => {
  * @returns {Promise<R>}
  */
 const post = (url, data, method = 'POST') => {
+
+  console.log('Post Data : ', data)
   return new Promise((resolve, reject) => {
     // To JS Object
     if (isImmutable(data)) {

@@ -103,27 +103,27 @@ function CartItem(props) {
               )}
 
 
-              {item.veggie == null || item.veggie == undefined ?
+              {item.veggie == null || item.veggie == undefined || item.veggie.length < 1 ? 
                 null
                 :
                 <View style={{ marginTop: 10 }}>
                   <Text style={{ fontSize: 14, fontWeight: 'bold' }}>Veggies</Text>
                   {Object.values(item.veggie).map((data, index) =>
                     <Text style={{ color: 'black', fontSize: 11 }}>
-                      {data.title}
+                      {data.name}
                     </Text>
                   )}
                 </View>
               }
 
-              {item.condi == null || item.condi == undefined ?
+              {item.condi == null || item.condi == undefined || item.condi.length < 1 ?
                 null
                 :
                 <View style={{ marginTop: 10 }}>
                   <Text style={{ fontSize: 14, fontWeight: 'bold' }}>Condiments</Text>
                   {Object.values(item.condi).map((data, index) =>
                     <Text style={{ color: 'black', fontSize: 11 }}>
-                      {data.title}
+                      {data.name}
                     </Text>
                   )}
                 </View>
