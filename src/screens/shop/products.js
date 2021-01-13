@@ -104,10 +104,11 @@ class ProductsScreen extends React.Component {
   }
 
   getData = (page) => {
-    const {sortBy, filterBy, lang, route} = this.props;
+    const {sortBy, filterBy, lang, route, Locator} = this.props;
     const {category} = this.state;
 
     const query = Map({
+      location: Locator.selectedLocation.slug,
       status: 'publish',
       lang: lang,
       per_page: 100,
@@ -140,6 +141,7 @@ class ProductsScreen extends React.Component {
   }
 
   fetchProducts = async (page = this.state.page) => {
+    console.log('Fetch products')
     try {
       // const dataGet = await this.getData(page);
       const FilterData = await this.getData(page);

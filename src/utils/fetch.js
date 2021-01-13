@@ -9,7 +9,7 @@ import { Platform } from 'react-native';
  * @returns {Promise<R>}
  */
 const get = (url, options = {}) => {
-  console.log(' GET ', options)
+  console.log(' GET ', url)
   return new Promise((resolve, reject) => {
     let baseURL = configApi.API_ENDPOINT + '/wp-json' + url;
 
@@ -23,7 +23,6 @@ const get = (url, options = {}) => {
         configApi.CONSUMER_KEY
       }&consumer_secret=${configApi.CONSUMER_SECRET}`;
     }
-
     fetch(baseURL, {
       ...options,
       method: 'GET',
