@@ -90,9 +90,9 @@ class Product extends Component {
     };
   }
   componentDidMount() {
-    const { dispatch, attribute, lang } = this.props;
+    const { dispatch, attribute, lang, Locator } = this.props;
     const { product } = this.state;
-
+    dispatch(GetVeggies(Locator.selectedLocation.slug))
     const vendor_id = product.getIn(['store', 'id']);
     dispatch(fetchRating(product.get('id')));
 

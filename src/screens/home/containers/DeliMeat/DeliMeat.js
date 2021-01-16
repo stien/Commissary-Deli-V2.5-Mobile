@@ -41,7 +41,7 @@ class DeliMeat extends React.Component {
 
                 <FlatList 
                 data={Data}
-                numColumns={3}
+                numColumns={2}
                 renderItem={ (item,index)=> this.Item(item,index) }
                 />
             </SafeAreaView>

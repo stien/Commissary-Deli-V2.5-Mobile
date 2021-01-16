@@ -243,7 +243,7 @@ class ProductsScreen extends React.Component {
               <SwitchProduct/>
             </Container>
             <CategoryList
-              onPress={this.handleCategoryPress}
+              // onPress={this.handleCategoryPress}
               data={
                 category && category.categories ? category.categories : null
               }
