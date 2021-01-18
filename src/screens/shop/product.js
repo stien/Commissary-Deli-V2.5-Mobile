@@ -335,7 +335,7 @@ class Product extends Component {
       <View style={styles.container}>
         <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'black' }}>Condiments</Text>
         <FlatList
-          data={Locator.location_veggie.condiments}
+          data={this.state.DATA2}
           renderItem={({ item, index }) =>
             <View style={{ flexDirection: 'row', }}>
               <Image
