@@ -7,7 +7,7 @@ import merge from 'lodash/merge';
 import unescape from 'lodash/unescape';
 import { withTranslation } from 'react-i18next';
 import { showMessage } from 'react-native-flash-message';
-import { StyleSheet, View, Dimensions, TouchableOpacity, Image, FlatList } from 'react-native';
+import { StyleSheet, View, Dimensions, TouchableOpacity, Image, FlatList, ActivityIndicator } from 'react-native';
 import { Text, ListItem, ThemedView, ThemeConsumer } from 'src/components';
 import Price from 'src/containers/Price';
 import Container from 'src/containers/Container';
@@ -478,8 +478,15 @@ class Product extends Component {
 
           {Cat == 'subs' || Cat == 'wraps' || Cat == 'breakfast paninis' || Cat == 'panini sandwiches' ? 
           <>
+          { Locator.location_veggie != null || Locator.location_veggie != undefined ?
+          <>
           {this.Vegetables()}
           {this.Condiments()}
+          </>
+          :
+          <ActivityIndicator size='small'/>
+          }
+          
           </>
           :
           null
