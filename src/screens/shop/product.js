@@ -17,7 +17,7 @@ import VendorHeaderDetail from 'src/containers/vendor/VendorHeaderDetail';
 import TextHtml from 'src/containers/TextHtml';
 import RoundCheckbox from 'rn-round-checkbox';
 
-import { fetchLocation, setLocation , GetVeggies} from 'src/modules/Locator/action';
+import { fetchLocation, setLocation , GetVeggies,  UpdateVeggieCheckbox , UpdateCondimentsCheckbox } from 'src/modules/Locator/action';
 import ScrollProductDetail from './product/ScrollProductDetail';
 import RelatedProducts from './containers/RelatedProducts';
 import ProductVariable from './product/ProductVariable';
@@ -58,6 +58,7 @@ import { detailVendorSelector } from 'src/modules/vendor/selectors';
 import {  LocationSelector } from '../../modules/Locator/selector';
 
 
+
 const { height } = Dimensions.get('window');
 const HEADER_MAX_HEIGHT = height * 0.6;
 
@@ -84,9 +85,7 @@ class Product extends Component {
       quantity: 1,
       variations: List(),
       isAddToCart: false,
-      DATA: this.props.Locator.location_veggie.veggies ,
-      DATA2:this.props.Locator.location_veggie.condiments
-    
+  
     };
   }
   componentDidMount() {
@@ -145,11 +144,13 @@ class Product extends Component {
   addToCart = () => {
     const { addCart, state: { variation }, t ,Locator } = this.props;
     const NotiId = Locator.NotiUserId;
-    console.log('NotiId',NotiId)
+    const Lveggie = Locator.location_veggie.veggies;
+    const Lcondi = Locator.location_veggie.condiments;
+    // console.log('NotiId',NotiId)
     // console.log('addCart::::::::', addCart)
-    const { product ,DATA, DATA2} = this.state;
-    const veggies = DATA.filter(x=> x.checked == true)
-    const condiments = DATA2.filter(x=> x.checked == true)
+    const { product } = this.state;
+    const veggies = Lveggie.filter(x=> x.checked == true)
+    const condiments = Lcondi.filter(x=> x.checked == true)
     const LB = product.get('categories').map((category) => category.get('name')).join('   |   ')
     if (product.get('type') === productType.VARIABLE) {
       const attributeProduct = product
@@ -282,7 +283,8 @@ class Product extends Component {
       <View style={styles.container}>
         <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'black' }}>Veggies</Text>
         <FlatList
-          data={this.state.DATA}
+          // data={this.state.DATA}
+          data={Locator.location_veggie.veggies}
           renderItem={({ item, index }) =>
             <View style={{ flexDirection: 'row', }}>
               <Image
@@ -308,24 +310,29 @@ class Product extends Component {
     )
   }
 
-  onClick = (item,index) =>{
+  onClick = (item,index, ) =>{
+    const check = !item.checked;
+    this.props.dispatch( UpdateVeggieCheckbox(check,index))
     // console.log('Item ', item)
     // console.log('Index ',index)
-    const { DATA } = this.state;
-    DATA[index].checked = !DATA[index].checked
+    // const { DATA } = this.state;
+    // DATA[index].checked = !DATA[index].checked
     // update state
-    this.setState({
-      DATA,
-    });
+    // this.setState({
+    //   DATA,
+    // });
   }
 
   onClick2 = (item,index) =>{
-    const { DATA2 } = this.state;
-    DATA2[index].checked = !DATA2[index].checked
-    // update state
-    this.setState({
-      DATA2,
-    });
+    const check = !item.checked;
+    this.props.dispatch( UpdateCondimentsCheckbox(check,index))
+
+    // const { DATA2 } = this.state;
+    // DATA2[index].checked = !DATA2[index].checked
+    // // update state
+    // this.setState({
+    //   DATA2,
+    // });
   }
 
 
@@ -335,7 +342,7 @@ class Product extends Component {
       <View style={styles.container}>
         <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'black' }}>Condiments</Text>
         <FlatList
-          data={this.state.DATA2}
+          data={Locator.location_veggie.condiments}
           renderItem={({ item, index }) =>
             <View style={{ flexDirection: 'row', }}>
               <Image
@@ -441,7 +448,8 @@ class Product extends Component {
                     image: image,
                     name: product.get('name'),
                   })
-                }>
+                }
+                >
                 <Rating size={12} startingValue={rating} readonly />
                 <Text style={styles.textRating}>
                   ({product.get('rating_count')})
@@ -478,13 +486,13 @@ class Product extends Component {
 
           {Cat == 'subs' || Cat == 'wraps' || Cat == 'breakfast paninis' || Cat == 'panini sandwiches' ? 
           <>
-          { Locator.location_veggie != null || Locator.location_veggie != undefined ?
+          { Locator.Veggie_Loading ?
+           <ActivityIndicator size='small'/>
+           :
           <>
           {this.Vegetables()}
           {this.Condiments()}
           </>
-          :
-          <ActivityIndicator size='small'/>
           }
           
           </>

@@ -27,6 +27,7 @@ import {withAddToCart} from 'src/hoc/hoc-add-to-card';
 
 import {SIMPLE} from 'src/config/product';
 import {  LocationSelector } from '../../modules/Locator/selector';
+import { fetchLocation, VeggieLoading} from 'src/modules/Locator/action';
 const ItemDefault = React.memo((props) => {
   const {
     item,
@@ -74,11 +75,10 @@ const ItemDefault = React.memo((props) => {
 
     if(LB == 'Party Trays' || item.categories[0].name == 'Party Trays'){
       alert('Please Note: A minimum 1 hour will be needed to prepare this item.')
-      // addCart(id)
       addCart(id, null, null, NotiId);
     }
     else{
-      // addCart(id)
+
       addCart(id, null, null, NotiId );
     }
   }
@@ -88,8 +88,11 @@ const ItemDefault = React.memo((props) => {
   return (
     <TouchableOpacity
       style={productItemStyle}
-      onPress={() =>
+      onPress={() =>{
+        props.dispatch( VeggieLoading(true) )
         navigation[navigationType](mainStack.product, {product: item})
+      }
+
       }>
       <View>
         <Image
@@ -161,8 +164,10 @@ const ItemDefault = React.memo((props) => {
     return (
     <TouchableOpacity
       style={productItemStyle}
-      onPress={() =>
+      onPress={() => {
+        props.dispatch( VeggieLoading(true) )
         navigation[navigationType](mainStack.product, {product: item})
+      }
       }>
       <View>
         <Image
@@ -194,10 +199,8 @@ const ItemDefault = React.memo((props) => {
             configs.get('toggleCheckout') &&
             type === SIMPLE &&
             purchasable &&
-            listStatus.includes(stock_status) && (
-
-
-
+            listStatus.includes(stock_status) && 
+            (
               <TouchableOpacity
                 style={styles.buttonAdd}
                 onPress={() => HandlePartyTray(id)}>

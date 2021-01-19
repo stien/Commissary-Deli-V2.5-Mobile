@@ -24,6 +24,8 @@ import CategoryList from './product/CategoryList';
 import {sortBySelector, filterBySelector} from 'src/modules/product/selectors';
 import {languageSelector} from 'src/modules/common/selectors';
 
+import {  GetVeggies,  } from 'src/modules/Locator/action';
+
 import {
   clearFilter,
   fetchProducts as clearData,
@@ -81,7 +83,11 @@ class ProductsScreen extends React.Component {
   }
 
   componentDidMount() {
+   
     this.fetchProducts();
+    const { dispatch, Locator } = this.props;
+    dispatch(GetVeggies(Locator.selectedLocation.slug))
+     console.log('Hellllllllllooooooo')
   }
 
   componentDidUpdate(prevProps) {
@@ -229,7 +235,8 @@ class ProductsScreen extends React.Component {
         />
         {loading ? (
           <Loading/>
-        ) : data.length ? (
+        ) : 
+        data.length ? (
           <View style={styles.viewList}>
             <Container style={styles.viewRefineSwitch}>
               <Refine

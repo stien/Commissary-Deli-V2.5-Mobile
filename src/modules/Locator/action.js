@@ -32,3 +32,26 @@ export function GetVeggies (val) {
     payload:val
   };
 }
+
+export function UpdateVeggieCheckbox(check,index) {
+ return {
+    type: Actions.VEGGIE_CHECKBOX,
+    payload:check,
+    index:index
+  };
+}
+
+export function UpdateCondimentsCheckbox(check,index){
+   return {
+    type: Actions.CONDIMENTS_CHECKBOX,
+    payload:check,
+    index:index
+  };
+}
+
+export function VeggieLoading(val){
+  return{
+    type: Actions.VEGGIE_LOADING,
+    payload: val
+  }
+}
