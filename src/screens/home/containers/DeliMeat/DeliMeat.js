@@ -65,14 +65,14 @@ export default DeliMeat;
 const Data =[
     {
     "column": 2,
-    "height": 290,
+    "height": 150,
     "layout": "bannerImage",
     "imageBanner": "https://mdbsapi.daviserve.com/mdbs-content/uploads/2020/02/top-4-banners_0000s_0008_TURKEY.jpg",
     "category": 217
     },
     {
     "column": 2,
-    "height": 290,
+    "height": 150,
     "layout": "bannerImage",
     "imageBanner": "https://mdbsapi.daviserve.com/mdbs-content/uploads/2020/02/top-4-banners_0000s_0007_HAM.jpg",
     "category": 21
@@ -80,20 +80,20 @@ const Data =[
     {
     "imageBanner": "https://mdbsapi.daviserve.com/mdbs-content/uploads/2020/02/top-4-banners_0000s_0006_BEEF.jpg",
     "column": 2,
-    "height": 290,
+    "height": 150,
     "layout": "bannerImage",
     "category": 41
     },
     {
     "imageBanner": "https://mdbsapi.daviserve.com/mdbs-content/uploads/2020/02/top-4-banners_0000s_0005_chicken.jpg",
     "column": 2,
-    "height": 290,
+    "height": 150,
     "layout": "bannerImage",
     "category": 95
     },
     {
     "column": 2,
-    "height": 290,
+    "height": 150,
     "layout": "bannerImage",
     "imageBanner": "https://mdbsapi.daviserve.com/mdbs-content/uploads/2020/02/top-4-banners_0000s_0003_salami.jpg",
     "category": 272
@@ -101,27 +101,27 @@ const Data =[
     {
     "imageBanner": "https://mdbsapi.daviserve.com/mdbs-content/uploads/2020/02/top-4-banners_0000s_0002_pastrami.jpg",
     "column": 2,
-    "height": 290,
+    "height": 150,
     "layout": "bannerImage",
     "category": 269
     },
     {
     "imageBanner": "https://mdbsapi.daviserve.com/mdbs-content/uploads/2020/02/top-4-banners_0000s_0001_german-meats.jpg",
     "column": 2,
-    "height": 290,
+    "height": 150,
     "layout": "bannerImage",
     "category": 270
     },
     {
     "column": 2,
-    "height": 290,
+    "height": 150,
     "layout": "bannerImage",
     "imageBanner": "https://mdbsapi.daviserve.com/mdbs-content/uploads/2020/02/top-4-banners_0000s_0000_italian-meats.jpg",
     "category": 271
     },
     {
     "column": 2,
-    "height": 290,
+    "height": 150,
     "layout": "bannerImage",
     "imageBanner": "https://mdbsapi.daviserve.com/mdbs-content/uploads/2020/02/top-4-banners_0000s_0004_bologna.jpg",
     "category": 43

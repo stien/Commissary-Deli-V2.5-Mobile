@@ -10,7 +10,8 @@ const initState = fromJS({
   },
   loading: false,
   NotiUserId:'',
-  location_veggie:''
+  location_veggie:'',
+  Veggie_Loading:true,
 });
 
 export default function locationReducer(state = initState, action = {}) {
@@ -28,9 +29,15 @@ export default function locationReducer(state = initState, action = {}) {
     case 'UPDATE_DEMO_CONFIG_SUCCESS':
       return initState;
     case Actions.GET_VEGGIES_SUCCESS:  
-    return state.set('location_veggie', action.payload)  
+    return state.set('location_veggie', action.payload).set('Veggie_Loading',false); 
      case Actions.GET_VEGGIES_ERROR:  
-    return state.set('location_veggie', action.payload)    
+    return state.set('location_veggie', action.payload).set('loading', true);    
+     case Actions.VEGGIE_CHECKBOX:
+    return state.setIn(['location_veggie', 'veggies', [action.index] , 'checked'], action.payload );
+    case Actions.CONDIMENTS_CHECKBOX:
+     return state.setIn(['location_veggie', 'condiments', [action.index] , 'checked'], action.payload );
+    case Actions.VEGGIE_LOADING:
+     return  state.set('Veggie_Loading',action.payload); 
     default:
       return state;
   }
