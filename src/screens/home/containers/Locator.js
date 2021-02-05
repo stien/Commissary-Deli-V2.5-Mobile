@@ -79,7 +79,7 @@ class Locator extends Component {
     OkChange = (x) => {
       console.log('x ===', x);
         this.props.dispatch(setLocation(x))
-        // this.props.dispatch(GetVeggies(x.slug))
+        this.props.dispatch(GetVeggies(x.slug))
         this.props.dispatch(clearCart())
         this.setState({
             visible:false

@@ -1,19 +1,21 @@
 import React from 'react';
 import {StyleSheet, TouchableOpacity,Text, View, SafeAreaView,FlatList,Image} from 'react-native';
+import { connect } from 'react-redux';
 import {Header, ThemedView} from 'src/components';
+import { LocationSelector, setLocationSelector } from '../../../../modules/Locator/selector';
 import {TextHeader, IconHeader, CartIcon} from 'src/containers/HeaderComponent';
 import action from 'src/utils/action';
 
 
 class DeliMeat extends React.Component { 
 
-
     SelectMeat=(data)=>{
+    console.log('DATA in delimeat ::', data)
        const val ={
-            "type":'category',
-            "id":data.category
+            "type":data.type,
+            "id":data.id
         }
-         action(val)
+        action(val)
     }
 
     Item = (item,index) => {
@@ -31,6 +33,7 @@ class DeliMeat extends React.Component {
     }
 
     render(){
+        const { Locator } = this.props;
         return (
             <SafeAreaView style={styles.container}>
                 <Header
@@ -40,7 +43,7 @@ class DeliMeat extends React.Component {
                 />
 
                 <FlatList 
-                data={Data}
+                data={Locator.location_veggie.meatslayout}
                 numColumns={2}
                 renderItem={ (item,index)=> this.Item(item,index) }
                 />
@@ -49,6 +52,12 @@ class DeliMeat extends React.Component {
     }
 };
 
+const mapStateToProps = (state) => ({
+    Locator: LocationSelector(state),
+    
+});
+// export default DeliMeat;
+export default connect(mapStateToProps)(DeliMeat);
 
 const styles = StyleSheet.create({
   container: {
@@ -60,70 +69,3 @@ const styles = StyleSheet.create({
       backgroundColor:'white'
   }
 });
-export default DeliMeat;
-
-const Data =[
-    {
-    "column": 2,
-    "height": 290,
-    "layout": "bannerImage",
-    "imageBanner": "https://mdbsapi.daviserve.com/mdbs-content/uploads/2020/02/top-4-banners_0000s_0008_TURKEY.jpg",
-    "category": 217
-    },
-    {
-    "column": 2,
-    "height": 290,
-    "layout": "bannerImage",
-    "imageBanner": "https://mdbsapi.daviserve.com/mdbs-content/uploads/2020/02/top-4-banners_0000s_0007_HAM.jpg",
-    "category": 21
-    },
-    {
-    "imageBanner": "https://mdbsapi.daviserve.com/mdbs-content/uploads/2020/02/top-4-banners_0000s_0006_BEEF.jpg",
-    "column": 2,
-    "height": 290,
-    "layout": "bannerImage",
-    "category": 41
-    },
-    {
-    "imageBanner": "https://mdbsapi.daviserve.com/mdbs-content/uploads/2020/02/top-4-banners_0000s_0005_chicken.jpg",
-    "column": 2,
-    "height": 290,
-    "layout": "bannerImage",
-    "category": 95
-    },
-    {
-    "column": 2,
-    "height": 290,
-    "layout": "bannerImage",
-    "imageBanner": "https://mdbsapi.daviserve.com/mdbs-content/uploads/2020/02/top-4-banners_0000s_0003_salami.jpg",
-    "category": 272
-    },
-    {
-    "imageBanner": "https://mdbsapi.daviserve.com/mdbs-content/uploads/2020/02/top-4-banners_0000s_0002_pastrami.jpg",
-    "column": 2,
-    "height": 290,
-    "layout": "bannerImage",
-    "category": 269
-    },
-    {
-    "imageBanner": "https://mdbsapi.daviserve.com/mdbs-content/uploads/2020/02/top-4-banners_0000s_0001_german-meats.jpg",
-    "column": 2,
-    "height": 290,
-    "layout": "bannerImage",
-    "category": 270
-    },
-    {
-    "column": 2,
-    "height": 290,
-    "layout": "bannerImage",
-    "imageBanner": "https://mdbsapi.daviserve.com/mdbs-content/uploads/2020/02/top-4-banners_0000s_0000_italian-meats.jpg",
-    "category": 271
-    },
-    {
-    "column": 2,
-    "height": 290,
-    "layout": "bannerImage",
-    "imageBanner": "https://mdbsapi.daviserve.com/mdbs-content/uploads/2020/02/top-4-banners_0000s_0004_bologna.jpg",
-    "category": 43
-    }
-    ]
