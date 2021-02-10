@@ -3,7 +3,7 @@ import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {DrawerActions} from '@react-navigation/native';
 
-import {ScrollView, View, Dimensions, Text} from 'react-native';
+import {ScrollView, View, Dimensions, Text, FlatList ,TouchableOpacity , Image, StyleSheet} from 'react-native';
 
 import {ThemedView, Header} from 'src/components';
 import {IconHeader, Logo, CartIcon} from 'src/containers/HeaderComponent';
@@ -31,6 +31,8 @@ import Divider from './home/containers/Divider';
 import Locator from './home/containers/Locator'
 import OneSignal from "react-native-onesignal";
 import { NotificationUserId } from '../modules/Locator/action';
+import action from 'src/utils/action';
+import { LocationSelector, setLocationSelector } from '../modules/Locator/selector';
 const {width} = Dimensions.get('window');
 
 const containers = {
@@ -81,24 +83,57 @@ class HomeScreen extends Component {
     });
     OneSignal.getPermissionSubscriptionState( (status) => {
      const  notiuserID = status.userId;
-      //  alert(notiuserID);
       this.props.dispatch(NotificationUserId(notiuserID))
     });
   }
 
-
-  renderContainer(config) {
-    console.log('Config', config)
-    const Container = containers[config.type];
-    if (!Container) {
-      return null;
+  OnPress = (data) => {
+    const {Locator} = this.props;
+    if(Locator.selectedLocation.name == ''){
+      alert('Please Select Location')
     }
+    else{
+      action(data)
+    }
+  }
+
+ Item = (item,index) => {
+  //  console.log('Item ===', item )
+        return(
+            <TouchableOpacity 
+            onPress={()=>this.OnPress(item.item)}
+            style={[styles.Item,{height:item.item.height,}]}>
+                <Image
+                style={{height:item.item.height}}
+                source={{uri:item.item.imageBanner}}
+                resizeMode='contain'
+                />
+            </TouchableOpacity>
+        )
+    }
+  renderContainer() {
+    // console.log('Config', config)
+    // const Container = containers[config.type];
+    // if (!Container) {
+    //   return null;
+    // }
     return (
-      <View key={config.id} style={config.spacing && config.spacing}>
-        <Container
-          {...config}
-          widthComponent={widthComponent(config.spacing)}
-        />
+      <View  >
+      {
+        this.props.Locator.location_veggie.homelayout == undefined ?
+        
+         <Image
+            source={require('../assets/images/cold-open.png')}
+             style={{marginTop: 50, marginRight: 'auto', marginLeft: 'auto'
+           }}
+         />
+        :
+        <FlatList 
+          data={this.props.Locator.location_veggie.homelayout}
+          numColumns={2}
+          renderItem={ (item,index)=> this.Item(item,index) }
+          />
+      }
       </View>
     );
   };
@@ -129,7 +164,10 @@ class HomeScreen extends Component {
           showsHorizontalScrollIndicator={false}
           showsVerticalScrollIndicator={false}>
              <Locator/>
-          {config.map((data) => this.renderContainer(data))}
+          {/* {config.map((data) => this.renderContainer(data))} */}
+          {
+            this.renderContainer()
+          }
         </ScrollView>
         <ModalHomePopup />
       </ThemedView>
@@ -141,7 +179,25 @@ const mapStateToProps = (state) => {
   return {
     config: dataConfigSelector(state),
     toggleSidebar: toggleSidebarSelector(state),
+     Locator: LocationSelector(state),
   };
 };
 
 export default connect(mapStateToProps)(HomeScreen);
+
+const styles = StyleSheet.create({
+  container: {
+    flex:1,
+      backgroundColor:'white'
+  },
+  Item:{
+      flex:1,
+      backgroundColor:'white'
+  },
+  text:{
+   textAlign:'center', 
+   fontSize:16,
+   fontWeight:'bold',
+   marginTop:80
+  }
+});

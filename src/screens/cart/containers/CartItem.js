@@ -146,8 +146,8 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   image: {
-    width: 80,
-    height: 107,
+    width: 120,
+    height: 120,
   },
   content: {
     paddingLeft: padding.big,

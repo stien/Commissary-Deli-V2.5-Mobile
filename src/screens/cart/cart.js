@@ -170,7 +170,7 @@ function CartScreen(props) {
                 ListFooterComponent={
             <Button
             style={styles.loginScreenButton}
-              title={"[+] add item"}
+              title={"[+] Add item"}
               underlayColor="#f194ff"
               onPress={() => navigation.navigate(homeTabs.home_drawer)}
             />
