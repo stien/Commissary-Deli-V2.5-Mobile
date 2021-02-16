@@ -10,7 +10,7 @@ import {PLUGIN_NAME} from 'src/config/development';
 export const getLocation = () =>{
     // console.log('Service call')
     return new Promise((resolve, reject) => {
-        let baseURL = 'https://mdbsapi.daviserve.com/js/locations.json';
+        let baseURL = 'https://mdbsapi.daviserve.com/locations';
         fetch(baseURL, {
           method: 'GET',
           headers: {
