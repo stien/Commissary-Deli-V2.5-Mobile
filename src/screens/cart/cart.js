@@ -49,9 +49,13 @@ function CartScreen(props) {
     dispatch,
     navigation,
   } = props;
-  React.useEffect(() => {
+  // React.useEffect(() => {
+  //   dispatch(getCart());
+  // }, []);
+React.useEffect(() => {
+    console.log('UseEffect in Listing', count );
     dispatch(getCart());
-  }, []);
+  }, [count]);
 
   const subtitleHeader =
     count > 1

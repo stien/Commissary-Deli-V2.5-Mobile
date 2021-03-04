@@ -9,8 +9,8 @@ import { Platform } from 'react-native';
  * @returns {Promise<R>}
  */
 const get = (url, options = {}) => {
-  console.log(' GET ', url)
   return new Promise((resolve, reject) => {
+const v = Math.floor(Math.random()*90000) + 10000;
     let baseURL = configApi.API_ENDPOINT + '/wp-json' + url;
 
     const isWC = url.indexOf('/wc') === 0;
@@ -23,11 +23,21 @@ const get = (url, options = {}) => {
         configApi.CONSUMER_KEY
       }&consumer_secret=${configApi.CONSUMER_SECRET}`;
     }
-    fetch(baseURL, {
+
+    if(url=='/mobile-builder/v1/settings'){
+
+        endGarb = '';
+      } else {
+        endGarb = '&v='+v;
+      }
+    
+    fetch(baseURL+endGarb, {
       ...options,
       method: 'GET',
       headers: {
         Accept: 'application/json',
+        'pragma': 'no-cache',
+        'cache-control': 'no-cache',
         'Content-Type': 'application/json',
         Authorization:
           isAuth && globalConfig.getToken()
@@ -40,8 +50,9 @@ const get = (url, options = {}) => {
         if (data.code) {
           reject(new Error(data.message));
         } else {
+          console.log('ALL -- dataaaa',data)
           resolve(data);
-          console.log('ALL -- dataaaa 2',data)
+          
         }
       })
       .catch((error) => {
@@ -58,9 +69,12 @@ const get = (url, options = {}) => {
  * @returns {Promise<R>}
  */
 const post = (url, data, method = 'POST') => {
+  console.log('Platform',Platform.OS)
+  console.log('DATA in update',data)
 
-  console.log('Post Data : ', data)
+    console.log(url)
   return new Promise((resolve, reject) => {
+const v = Math.floor(Math.random()*90000) + 10000;
     // To JS Object
     if (isImmutable(data)) {
       data = data.toJS();
@@ -84,6 +98,8 @@ const post = (url, data, method = 'POST') => {
       method: method,
       headers: {
         Accept: 'application/json',
+        'pragma': 'no-cache',
+        'cache-control': 'no-cache',
         Authorization:
           isAuth && globalConfig.getToken()
             ? `Bearer ${globalConfig.getToken()}`
@@ -100,6 +116,7 @@ const post = (url, data, method = 'POST') => {
     })
       .then((res) => res.json())
       .then((result) => {
+        console.log('Data Update Response', result)
         if (result.code) {
           if (isDigits && (result.code === '1' || result.code === 1)) {
             resolve(result);
