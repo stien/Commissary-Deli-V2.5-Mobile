@@ -73,6 +73,7 @@ class CartIcon extends React.Component<Props> {
         onPress={() => navigation.navigate(homeTabs.cart)}
         style={styles.container}>
         <Animated.View
+         onTouchEnd={() => resetTimer()}
           style={[
             styles.view,
             {

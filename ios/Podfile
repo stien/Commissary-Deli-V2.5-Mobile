@@ -6,13 +6,13 @@ target 'OneSignalNotificationServiceExtension' do
   pod 'OneSignal', '>= 2.9.3', '< 3.0'
 end
 
-target 'Commissary Deli' do
+target 'Commissary Deli Kiosk' do
   # Pods for rn_oreo
   config = use_native_modules!
 
   use_react_native!(:path => config["reactNativePath"])
 
-  target 'Commissary DeliTests' do
+  target 'Commissary Deli KioskTests' do
     inherit! :complete
     # Pods for testing
   end
@@ -27,10 +27,10 @@ target 'Commissary Deli' do
   end
 end
 
-target 'Commissary Deli-tvOS' do
+target 'Commissary Deli Kiosk-tvOS' do
   # Pods for rn_oreo-tvOS
 
-  target 'Commissary Deli-tvOSTests' do
+  target 'Commissary Deli Kiosk-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end

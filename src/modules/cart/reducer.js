@@ -4,13 +4,12 @@ import { REHYDRATE } from 'redux-persist/lib/constants';
 import update from 'react-addons-update';
 import * as Actions from './constants';
 
-import {SIGN_OUT_SUCCESS} from 'src/modules/auth/constants';
-
+import { SIGN_OUT_SUCCESS } from 'src/modules/auth/constants';
 
 export const initState = fromJS({
   cart_key: null,
   cart_data: {
-    items: [],
+    items: {},
     totals: {},
     coupons: [],
   },
@@ -33,8 +32,9 @@ function cartReducer(state = initState, { type, payload }) {
       }
       return state;
     case Actions.GET_CART_SUCCESS:
-      return state
-        .set('cart_data', fromJS(payload))
+      
+         console.log(' cart_data !!!!!!' ,  fromJS(payload))
+         return state.set('cart_data', fromJS(payload))
         .set('cart_loading', false)
         .set('cart_list_loading', false)
         .set('cart_remove_loading', false)
@@ -47,6 +47,7 @@ function cartReducer(state = initState, { type, payload }) {
         .set('cart_remove_loading', false)
         .set('cart_update_loading', false);
     case Actions.ADD_TO_CART_SUCCESS:
+    console.log(' ADD_TO_CART_SUCCESS == ', payload )
       return state.set('cart_key', payload);
     case Actions.ADD_LIST_CART:
       return state.set('cart_list_loading', true);

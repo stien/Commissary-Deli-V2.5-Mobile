@@ -27,7 +27,6 @@ function CartItem(props) {
 
   const [Val, setVal] = useState(-1)
   const { item, currency, updateQuantity, goToProduct, style } = props;
-  console.log('Item in variation', item)
   if (!item) {
     return null;
   }
@@ -146,8 +145,8 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   image: {
-    width: 80,
-    height: 107,
+    width: 300,
+    height: 300,
   },
   content: {
     paddingLeft: padding.big,

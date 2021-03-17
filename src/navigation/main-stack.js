@@ -11,6 +11,8 @@ import Checkout from 'src/screens/cart/checkout';
 import WeViewCheckout from 'src/screens/cart/webview-checkout';
 import WeViewPayment from 'src/screens/cart/webview-payment';
 import WeViewThankYou from 'src/screens/cart/webview-thankyou';
+import WeViewBoh from 'src/screens/cart/webview-boh';
+
 
 import Products from 'src/screens/shop/products';
 import Search from 'src/screens/shop/search';
@@ -94,6 +96,13 @@ function MainStack() {
         name={mainStack.webview_thank_you}
         component={WeViewThankYou}
       />
+
+      <Stack.Screen
+        options={{headerShown: false}}
+        name={mainStack.webview_boh}
+        component={WeViewBoh}
+      />
+
       <Stack.Screen
         options={{headerShown: false}}
         name={mainStack.products}

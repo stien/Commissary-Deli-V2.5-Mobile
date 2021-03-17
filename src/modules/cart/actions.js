@@ -1,5 +1,4 @@
 import * as Actions from './constants';
-
 type Action = {type: string, payload: Object};
 
 /**
@@ -12,12 +11,14 @@ export function addToCart(item , veggies,condiments,NotiId ,cb = () => {}): Acti
   // console.log('vvvvv', veggies)
   // console.log('ggggg', condiments)
   // console.log('NotiId', NotiId)
+  // console.log('add item', item)
+  
    item.cart_item_data={
     veggie:veggies,
     condi:condiments,
     NotiUserId:NotiId
    }
-  // console.log('addToCart', {item, cb})
+  console.log('addToCart', {item, cb})
   return {
     type: Actions.ADD_TO_CART,
     payload: {item, cb},

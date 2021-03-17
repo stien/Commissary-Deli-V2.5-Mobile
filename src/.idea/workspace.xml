@@ -25,30 +25,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c89e4e28-4e52-4dd6-82c1-6d406ea1598a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../android/.gradle/6.0.1/executionHistory/executionHistory.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../android/.gradle/6.0.1/executionHistory/executionHistory.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../android/.gradle/6.0.1/fileHashes/fileHashes.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../android/.gradle/6.0.1/fileHashes/fileHashes.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../android/.gradle/6.0.1/fileHashes/resourceHashesCache.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../android/.gradle/6.0.1/javaCompile/classAnalysis.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../android/.gradle/6.0.1/javaCompile/jarAnalysis.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../android/.gradle/6.0.1/javaCompile/javaCompile.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../android/.gradle/6.0.1/javaCompile/taskHistory.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../android/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../android/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ios/Commissary Deli.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Commissary Deli.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ios/GoogleService-Info.plist" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/GoogleService-Info.plist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ios/Pods/Headers/Public/yoga/Yoga-umbrella.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ios/Pods/Headers/Public/yoga/Yoga.modulemap" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ios/rn_oreo.xcworkspace/xcuserdata/securelab.xcuserdatad/UserInterfaceState.xcuserstate" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/rn_oreo.xcworkspace/xcuserdata/securelab.xcuserdatad/UserInterfaceState.xcuserstate" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ios/rn_oreo/Info.plist" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/rn_oreo/Info.plist" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locales/en.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/en.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modules/cart/reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/modules/cart/reducer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modules/cart/saga.js" beforeDir="false" afterPath="$PROJECT_DIR$/modules/cart/saga.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/screens/cart/cart.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/cart/cart.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/profile/account.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/profile/account.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/cart/webview-boh.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/cart/webview-boh.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,10 +72,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="126" y="87" width="1475" height="926" key="DiffContextDialog" timestamp="1605028899859">
+    <state x="124" y="101" width="1475" height="926" key="DiffContextDialog" timestamp="1604335823974">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
-    <state x="126" y="87" width="1475" height="926" key="DiffContextDialog/0.23.1920.1057/1920.23.1920.1057/-1920.23.1920.1057@0.23.1920.1057" timestamp="1605028899859" />
+    <state x="124" y="101" width="1475" height="926" key="DiffContextDialog/0.23.1920.1057/1920.23.1920.1057/-1920.23.1920.1057@0.23.1920.1057" timestamp="1604335823974" />
     <state x="429" y="187" key="SettingsEditor" timestamp="1603422930985">
       <screen x="0" y="23" width="1920" height="1057" />
     </state>

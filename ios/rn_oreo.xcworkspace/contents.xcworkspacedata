@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Commissary Deli.xcodeproj">
+      location = "group:/Volumes/SecureLabExternal/SecureLabEx/Daviserve Dropbox/Stien Davis/MDBS/DEV/VERSION 2/commissary deli/ios/Commissary Deli Kiosk.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

@@ -21,7 +21,7 @@ const Carousel = ({
   const paddingEnd = box ? padding.large : 0;
   const column = col > 0 ? col : 1.5;
   const widthImage = widthView / column;
-  const heightImage = (widthImage * height) / width-50;
+  const heightImage = (widthImage * height) / width-250;
 
   if (loading) {
     const listData = Array.from(Array(limit)).map((arg, index) => index);

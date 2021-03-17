@@ -19,6 +19,7 @@ import {languageSelector} from 'src/modules/common/selectors';
 import {padding} from 'src/components/config/spacing';
 import {typeShowCategory} from 'src/config/category';
 
+  
 const initHeader = {
   style: { textTransform: 'capitalize'},
 };

@@ -83,7 +83,7 @@ class ProductImages extends Component {
         <Image
           source={{uri: item.src, cache: 'reload'}}
           resizeMode="cover"
-          style={{height: height, width: width}}
+          style={{height: height, width: 450}}
           PlaceholderContent={<ActivityIndicator />}
         />
       </TouchableOpacity>
@@ -135,13 +135,6 @@ class ProductImages extends Component {
             containerStyle={styles.viewPagination}
             activeVisit={indexCurrency}
             count={images.size}
-          />
-          {/*<Icon name="heart" color={black} size={19} />*/}
-          <WishListIcon
-            product_id={product_id}
-            color={black}
-            size={19}
-            containerStyle={styles.iconWishlist}
           />
         </View>
         <Modal visible={visible} transparent={true}>

@@ -47,8 +47,6 @@ class Banners extends Component {
   render() {
     const {layout, fields, widthComponent, language, t} = this.props;
 
-    console.log('Fields :::', fields )
-
     if (
       !fields ||
       typeof fields !== 'object' ||
@@ -75,8 +73,6 @@ class Banners extends Component {
       fields.pad && parseInt(fields.pad, 10) ? parseInt(fields.pad, 10) : 0;
 
     const images = fields.images || [];
-
-    console.log('Field Images',images  )
 
     const widthView = valueBox
       ? widthComponent - 2 * padding.large
@@ -114,12 +110,12 @@ class Banners extends Component {
               height={heightValue}
               radius={radius}
             />
-          ) :( 
-          <Component
+          ) : (
+            <Component
               images={images}
               col={colBanner(layout, images.length)}
-              widthImage={widthValue}
-              heightImage={heightValue}
+              widthImage={40}
+              heightImage={30}
               widthView={widthView}
               radius={radius}
               box={valueBox}

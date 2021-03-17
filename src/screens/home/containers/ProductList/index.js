@@ -223,7 +223,8 @@ class ProductList extends Component {
       <>
         {headingElement ||
         (fields && fields.disable_heading && (
-          <Container disable={headerDisable}>
+          <Container disable={headerDisable} 
+          >
             {headingElement ? (
               headingElement
             ) : (
@@ -256,6 +257,7 @@ class ProductList extends Component {
           navigationType={navigationType}
           limit={per_page}
           loading={loading}
+          onTouchStart={() => alert()}
         />
       </>
     );

@@ -70,15 +70,7 @@ const ItemProduct = React.memo((props) => {
                 numberOfLines={2}>
                 {unescape(name)}
               </Text>
-              <View style={styles.viewWishList}>
-                <WishListIcon
-                  product_id={id}
-                  size={15}
-                  color={theme.colors.primary}
-                  colorSelect={theme.colors.primary}
-                  containerStyle={styles.iconWishlist}
-                />
-              </View>
+
             </View>
             <Price
               price_format={price_format}

@@ -74,9 +74,7 @@ const Item2 = ({
           ) : null}
         </View>
       </View>
-      <View>
-        <WishListIcon product_id={id} size={16} />
-      </View>
+
     </TouchableOpacity>
   );
 };

@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withTranslation} from 'react-i18next';
-import {StyleSheet, ScrollView, View, Linking} from 'react-native';
-import {Header, ThemedView, Text} from 'src/components';
+import {StyleSheet, ScrollView, View, Linking, TouchableOpacity} from 'react-native';
+import {Header, ThemedView, Text, ListItem} from 'src/components';
 
 import HeaderMe from './containers/HeaderMe';
 import SettingMe from './containers/SettingMe';
@@ -10,7 +10,7 @@ import InformationMe from './containers/InformationMe';
 import Container from 'src/containers/Container';
 import SocialIcon from 'src/containers/SocialIcon';
 import {TextHeader, CartIcon} from 'src/containers/HeaderComponent';
-
+import {mainStack} from 'src/config/navigator';
 import {authSelector} from 'src/modules/auth/selectors';
 import {
   wishListSelector,
@@ -44,6 +44,7 @@ class MeScreen extends Component {
       configs,
       auth: {isLogin},
       language,
+      navigation,
     } = this.props;
 
     return (
@@ -62,6 +63,8 @@ class MeScreen extends Component {
               goPhone={this.handleLinkUrl}
               phonenumber={configs.get('phone')}
             />
+
+    
             <View style={styles.viewSocial}>
               <SocialIcon
                 light
@@ -128,6 +131,20 @@ const styles = StyleSheet.create({
     marginHorizontal: margin.small / 2,
     paddingTop: 0,
     paddingBottom: 0,
+  },
+    bohstyle: {
+    padding: 32,
+    // backgroundColor: '#0b9dcc',
+    margin: 0,
+    color: '#fff',
+    width: 300,
+    height: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+    borderColor:'#0b9dcc',
+    borderWidth: 2,
+
   },
 });
 

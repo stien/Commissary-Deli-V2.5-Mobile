@@ -12,6 +12,11 @@ import {PLUGIN_NAME} from 'src/config/development';
  */
 export const addToCart = (data, cartKey) => {
     if (cartKey) {
+      console.log("Reques : ", request)
+      console.log("PLUGIN_NAME :", PLUGIN_NAME)
+      console.log("cartKey  :", cartKey)
+      console.log("data  :", data)
+
         return request.post(`/${PLUGIN_NAME}/v1/cart?cart_key=${cartKey}`, data);
     }
     return request.post(`/${PLUGIN_NAME}/v1/cart`, data);
@@ -30,10 +35,23 @@ export const updateCartQuantity = (data, cartKey) =>
  * @version 1.0.0
  * @returns {Promise | Promise<unknown>}
  */
-export const getCart = (query, options = {}) => request.get(`/${PLUGIN_NAME}/v1/cart?${queryString.stringify(
+export const getCart = (query, options = {}) => {
+
+       console.log("query : ", query)
+      console.log("options :", options)
+      
+   return request.get(`/${PLUGIN_NAME}/v1/cart?${queryString.stringify(
     pickBy(query, (item) => item !== ''),
-    {arrayFormat: 'comma'},
-)}`, options);
+    {arrayFormat: 'comma'},)
+     }`, options);
+}
+//  console.log(" GetCart Reques : ", request)
+//       console.log(" GetCart PLUGIN_NAME :", PLUGIN_NAME)
+      // console.log(" GetCart queryString  :", queryString)
+ 
+ 
+
+    
 
 export const addCoupon = (data, cartKey) => request.post(`/${PLUGIN_NAME}/v1/add-discount?cart_key=${cartKey}`, data);
 

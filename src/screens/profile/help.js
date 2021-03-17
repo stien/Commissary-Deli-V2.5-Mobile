@@ -52,7 +52,6 @@ class HelpScreen extends React.Component {
               })
             }
           />
-        
           <ListItem
             title={t('profile:text_rate_app')}
             titleProps={titleProps}

@@ -15,18 +15,7 @@ const SwitchProduct = ({theme, productView, switchView}) => {
 
   return (
     <View style={styles.container}>
-      {LIST_SWITCH_PRODUCT.map((value) => (
-        <Icon
-          key={value.icon}
-          name={value.icon}
-          type="feather"
-          size={17}
-          color={value.view === productView ? selectIcon : noneSelectIcon}
-          underlayColor="transparent"
-          iconStyle={[styles.touch, styles.icon]}
-          onPress={() => switchView(value.view)}
-        />
-      ))}
+
     </View>
   );
 };

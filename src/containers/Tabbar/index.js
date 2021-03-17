@@ -30,13 +30,13 @@ const Tabbar = (props) => {
     //   router: homeTabs.shop,
     //   isShow: true,
     // },
-    {
-      iconName: 'heart',
-      name: t('common:text_wishList'),
-      nameData: 'wishList',
-      router: homeTabs.wish_list,
-      isShow: configs.get('toggleWishlist'),
-    },
+    // {
+    //   iconName: 'heart',
+    //   name: t('common:text_wishList'),
+    //   nameData: 'wishList',
+    //   router: homeTabs.wish_list,
+    //   isShow: configs.get('toggleWishlist'),
+    // },
     {
       iconName: 'shopping-bag',
       name: t('common:text_cart'),
@@ -50,6 +50,7 @@ const Tabbar = (props) => {
       router: homeTabs.me,
       iconProps: {
         size: 23,
+        color: '#8a8a8a21',
       },
       isShow: true,
     },

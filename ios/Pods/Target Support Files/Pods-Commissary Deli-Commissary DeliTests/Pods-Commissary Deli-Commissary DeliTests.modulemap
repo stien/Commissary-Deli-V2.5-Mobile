@@ -1,6 +1,0 @@
-module Pods_Commissary_Deli_Commissary_DeliTests {
-  umbrella header "Pods-Commissary Deli-Commissary DeliTests-umbrella.h"
-
-  export *
-  module * { export * }
-}

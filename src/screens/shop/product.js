@@ -7,7 +7,7 @@ import merge from 'lodash/merge';
 import unescape from 'lodash/unescape';
 import { withTranslation } from 'react-i18next';
 import { showMessage } from 'react-native-flash-message';
-import { StyleSheet, View, Dimensions, TouchableOpacity, Image, FlatList, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, Dimensions, TouchableOpacity, Image, FlatList } from 'react-native';
 import { Text, ListItem, ThemedView, ThemeConsumer } from 'src/components';
 import Price from 'src/containers/Price';
 import Container from 'src/containers/Container';
@@ -17,7 +17,6 @@ import VendorHeaderDetail from 'src/containers/vendor/VendorHeaderDetail';
 import TextHtml from 'src/containers/TextHtml';
 import RoundCheckbox from 'rn-round-checkbox';
 
-import { fetchLocation, setLocation , GetVeggies,  UpdateVeggieCheckbox , UpdateCondimentsCheckbox } from 'src/modules/Locator/action';
 import ScrollProductDetail from './product/ScrollProductDetail';
 import RelatedProducts from './containers/RelatedProducts';
 import ProductVariable from './product/ProductVariable';
@@ -58,12 +57,11 @@ import { detailVendorSelector } from 'src/modules/vendor/selectors';
 import {  LocationSelector } from '../../modules/Locator/selector';
 
 
-
 const { height } = Dimensions.get('window');
 const HEADER_MAX_HEIGHT = height * 0.6;
 
 
-const LBcheck = ['deli cheese', 'salads', 'Turkey', 'ham', 'Beef', 'Chicken', 'italian meats','salami', 'Pastrami', 'german meats', 'italian meats', 'Bologna']
+const LBcheck = ['deli cheese', 'salads', 'Turkey', 'ham', 'Beef', 'Chicken', 'italian meats','salami', 'Beef','Pastrami', 'german meats', 'italian meats', 'Bologna','german meats']
 
 class Product extends Component {
   constructor(props, context) {
@@ -85,13 +83,80 @@ class Product extends Component {
       quantity: 1,
       variations: List(),
       isAddToCart: false,
-  
+      DATA: [
+        {
+          title: 'Lettuce',
+          image: 'https://mdbsapi.daviserve.com/mdbs-content/uploads/2020/09/lettuce.png',
+          value: true
+        },
+        {
+
+          title: 'Spinach',
+          image: 'https://mdbsapi.daviserve.com/mdbs-content/uploads/2020/09/spinach.png',
+          value: false
+        },
+        {
+
+          title: 'Tomato',
+          image: 'https://mdbsapi.daviserve.com/mdbs-content/uploads/2020/09/tomatoe.png',
+          value: true
+        },
+        {
+          title: 'Onion',
+          image: 'https://mdbsapi.daviserve.com/mdbs-content/uploads/2020/09/onion.png',
+          value: true
+        },
+        {
+          title: 'Jalapenos',
+          image: 'https://mdbsapi.daviserve.com/mdbs-content/uploads/2020/09/jalapenos.png',
+          value: false
+        },
+        {
+          title: 'Green Bell Peppers',
+          image: 'https://mdbsapi.daviserve.com/mdbs-content/uploads/2020/09/greenpepper.png',
+          value: false
+        },
+        {
+          title: 'Banna Peppers',
+          image: 'https://mdbsapi.daviserve.com/mdbs-content/uploads/2020/09/banna-peppers.png',
+          value: false
+        },
+      ],
+      DATA2:[
+        {
+            title: 'Mayo',
+            image: 'https://lexiscleankitchen.com/wp-content/uploads/2019/04/Homemade-Mayo-683x1024.jpg',
+            value: true
+        },
+        {
+            title: 'Yellow Mustard',
+            image: 'https://mdbsapi.daviserve.com/mdbs-content/uploads/2020/10/yellow-mustard-1.png',
+            value: false
+        },
+        {
+            title: 'Honey Mustard',
+            image: 'https://mdbsapi.daviserve.com/mdbs-content/uploads/2020/10/honey-mustard-1.png',
+            value: false
+        },
+        {
+            title: 'Deli Mustard',
+            image: 'https://mdbsapi.daviserve.com/mdbs-content/uploads/2020/10/spicy-honey-mustard-1.png',
+            value: false
+        },
+        {
+            title: 'Sub Dressing',
+            image: 'https://mdbsapi.daviserve.com/mdbs-content/uploads/2020/10/sub-dressing-1.png',
+            value: false
+        },
+    ]
+     
     };
   }
+
   componentDidMount() {
-    const { dispatch, attribute, lang, Locator } = this.props;
+    const { dispatch, attribute, lang } = this.props;
     const { product } = this.state;
-    dispatch(GetVeggies(Locator.selectedLocation.slug))
+
     const vendor_id = product.getIn(['store', 'id']);
     dispatch(fetchRating(product.get('id')));
 
@@ -140,17 +205,31 @@ class Product extends Component {
       this.abortController.abort();
     }
   }
+  
+  resetTimer = (noty) => {
+
+    console.log('Reset Timer');
+    clearInterval(this.timer);
+    currSeconds = 0;
+
+    // if (noty == false){
+    // this.timer = setInterval(startIdleTimerNoNOty, 15000);
+
+    // } else {
+    // this.timer = setInterval(startIdleTimer, 15000);
+    // }
+  };
 
   addToCart = () => {
+
+    console.log(' Add to cart call on press  =======')
     const { addCart, state: { variation }, t ,Locator } = this.props;
     const NotiId = Locator.NotiUserId;
-    const Lveggie = Locator.location_veggie.veggies;
-    const Lcondi = Locator.location_veggie.condiments;
     // console.log('NotiId',NotiId)
     // console.log('addCart::::::::', addCart)
-    const { product } = this.state;
-    const veggies = Lveggie.filter(x=> x.checked == true)
-    const condiments = Lcondi.filter(x=> x.checked == true)
+    const { product ,DATA, DATA2} = this.state;
+    const veggies = DATA.filter(x=> x.value == true)
+    const condiments = DATA2.filter(x=> x.value == true)
     const LB = product.get('categories').map((category) => category.get('name')).join('   |   ')
     if (product.get('type') === productType.VARIABLE) {
       const attributeProduct = product
@@ -164,34 +243,38 @@ class Product extends Component {
       } else {
         if (LB == 'Party Trays') {
           alert('Please Note: A minimum 1 hour will be needed to prepare this item.')
-          this.props.dispatch(GetVeggies(Locator.selectedLocation.slug))
           addCart(product.get('id'), null, null, NotiId ,() => this.setState({ isAddToCart: true }));
-         
+          this.resetTimer();
+          this.props.navigation.navigate(homeTabs.cart)
         }
         else if(LB == 'subs' || LB == 'wraps' || LB == 'breakfast paninis' || LB == 'panini sandwiches'){
-          this.props.dispatch(GetVeggies(Locator.selectedLocation.slug))
           addCart(product.get('id'), veggies, condiments, NotiId, () => this.setState({ isAddToCart: true }));
-
+          resetTimer();
+          this.props.navigation.navigate(homeTabs.cart)
         }
         else{
-          this.props.dispatch(GetVeggies(Locator.selectedLocation.slug))
           addCart(product.get('id'), null, null, NotiId ,() => this.setState({ isAddToCart: true }));
+          this.resetTimer();
+          this.props.navigation.navigate(homeTabs.cart)
         }
         
       }
     } else {
       if (LB == 'Party Trays') {
         alert('Please Note: A minimum 1 hour will be needed to prepare this item.')
-        this.props.dispatch(GetVeggies(Locator.selectedLocation.slug))
         addCart(product.get('id'), null, null, NotiId,() => this.setState({ isAddToCart: true }));
+        this.resetTimer();
+        this.props.navigation.navigate(homeTabs.cart)
       }
       else if(LB == 'subs' || LB == 'wraps' || LB == 'breakfast paninis' || LB == 'panini sandwiches'){
-        this.props.dispatch(GetVeggies(Locator.selectedLocation.slug))
         addCart(product.get('id'), veggies, condiments,NotiId , () => this.setState({ isAddToCart: true }));
+        this.resetTimer();
+        this.props.navigation.navigate(homeTabs.cart)
       }
       else{
-        this.props.dispatch(GetVeggies(Locator.selectedLocation.slug))
         addCart(product.get('id'), null, null,NotiId ,() => this.setState({ isAddToCart: true }));
+        this.resetTimer();
+        this.props.navigation.navigate(homeTabs.cart)
       }
     }
   };
@@ -278,27 +361,25 @@ class Product extends Component {
 
 
   Vegetables = () => {
-    const {Locator} = this.props;
     return (
       <View style={styles.container}>
         <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'black' }}>Veggies</Text>
         <FlatList
-          // data={this.state.DATA}
-          data={Locator.location_veggie.veggies}
+          data={this.state.DATA}
           renderItem={({ item, index }) =>
             <View style={{ flexDirection: 'row', }}>
               <Image
                 style={styles.image}
                 resizeMode='contain'
-                source={{ uri: item.url }}
+                source={{ uri: item.image }}
               />
-              <Text style={styles.text}>{item.name}</Text>
+              <Text style={styles.text}>{item.title}</Text>
 
               <View style={styles.round}>
                 <RoundCheckbox
                   size={24}
-                  checked={item.checked}
-                  onValueChange={() => this.onClick(item,index)}
+                  checked={item.value}
+                  onValueChange={() => this.onClick(index)}
                 />
               </View>
             </View>
@@ -310,53 +391,45 @@ class Product extends Component {
     )
   }
 
-  onClick = (item,index, ) =>{
-    const check = !item.checked;
-    this.props.dispatch( UpdateVeggieCheckbox(check,index))
-    // console.log('Item ', item)
-    // console.log('Index ',index)
-    // const { DATA } = this.state;
-    // DATA[index].checked = !DATA[index].checked
+  onClick = (index) =>{
+    const { DATA } = this.state;
+    DATA[index].value = !DATA[index].value
     // update state
-    // this.setState({
-    //   DATA,
-    // });
+    this.setState({
+      DATA,
+    });
   }
 
-  onClick2 = (item,index) =>{
-    const check = !item.checked;
-    this.props.dispatch( UpdateCondimentsCheckbox(check,index))
-
-    // const { DATA2 } = this.state;
-    // DATA2[index].checked = !DATA2[index].checked
-    // // update state
-    // this.setState({
-    //   DATA2,
-    // });
+  onClick2 = (index) =>{
+    const { DATA2 } = this.state;
+    DATA2[index].value = !DATA2[index].value
+    // update state
+    this.setState({
+      DATA2,
+    });
   }
 
 
   Condiments = () => {
-    const {Locator} = this.props;
     return (
       <View style={styles.container}>
         <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'black' }}>Condiments</Text>
         <FlatList
-          data={Locator.location_veggie.condiments}
+          data={this.state.DATA2}
           renderItem={({ item, index }) =>
             <View style={{ flexDirection: 'row', }}>
               <Image
                 style={styles.image}
                 resizeMode='contain'
-                source={{ uri: item.url}}
+                source={{ uri: item.image }}
               />
-              <Text style={styles.text}>{item.name}</Text>
+              <Text style={styles.text}>{item.title}</Text>
 
               <View style={styles.round}>
                 <RoundCheckbox
                   size={24}
-                  checked={item.checked}
-                  onValueChange={() => this.onClick2(item,index)}
+                  checked={item.value}
+                  onValueChange={() => this.onClick2(index)}
                 />
               </View>
             </View>
@@ -379,7 +452,6 @@ class Product extends Component {
       vendorDetail,
       loading,
       state: { variation_id },
-      Locator
     } = this.props;
 
     const { product, isAddToCart, variations } = this.state;
@@ -391,7 +463,7 @@ class Product extends Component {
           <Empty
             title={t('empty:text_title_product_detail')}
             subTitle={t('empty:text_subtitle_product_detail')}
-            clickButton={() => navigation.navigate(homeTabs.home_drawer)}
+            clickButton={() => navigation.navigate(homeTabs.shop)}
           />
         </ThemedView>
       );
@@ -418,7 +490,7 @@ class Product extends Component {
             product_id={product.get('id')}
             url={product.get('permalink')}
             name_product={product.get('name')}
-            height={HEADER_MAX_HEIGHT / 2 + 50}
+            height={HEADER_MAX_HEIGHT / 2 + 150}
           />
         }
         footerElement={
@@ -429,13 +501,11 @@ class Product extends Component {
               isAddToCart={isAddToCart}
               onPressAddCart={this.addToCart}
               loading={loading}
-              onPressViewCart={() => { 
-                this.props.dispatch(GetVeggies(Locator.selectedLocation.slug))
-                navigation.navigate(homeTabs.home_drawer)}}
+              onPressViewCart={() => navigation.navigate(homeTabs.cart)}
             />
           )
         }
-        heightViewImage={HEADER_MAX_HEIGHT / 2 + 50}>
+        heightViewImage={HEADER_MAX_HEIGHT / 2 + 150}>
         <Container style={styles.container}>
           <View style={styles.viewCategoryRating}>
             <CategoryName product={product} style={styles.textCategory} />
@@ -448,8 +518,7 @@ class Product extends Component {
                     image: image,
                     name: product.get('name'),
                   })
-                }
-                >
+                }>
                 <Rating size={12} startingValue={rating} readonly />
                 <Text style={styles.textRating}>
                   ({product.get('rating_count')})
@@ -486,15 +555,8 @@ class Product extends Component {
 
           {Cat == 'subs' || Cat == 'wraps' || Cat == 'breakfast paninis' || Cat == 'panini sandwiches' ? 
           <>
-          { Locator.Veggie_Loading ?
-           <ActivityIndicator size='small'/>
-           :
-          <>
           {this.Vegetables()}
           {this.Condiments()}
-          </>
-          }
-          
           </>
           :
           null

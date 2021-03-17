@@ -7,17 +7,11 @@ import {TextHeader, IconHeader, CartIcon} from 'src/containers/HeaderComponent';
 
 import {mainStack} from 'src/config/navigator';
 import {signOut} from 'src/modules/auth/actions';
-import firebase from '@react-native-firebase/app';
 
 class AccountScreen extends React.Component {
-  handleLogout =async () => {
-   await firebase.auth().signOut().then(function() {
-      console.log('Signed Out successfully');
-    }, function(error) {
-      console.error('Sign Out Error', error);
-    });
-  await  this.props.signOut();
-   await this.props.navigation.goBack();
+  handleLogout = () => {
+    this.props.signOut();
+    this.props.navigation.goBack();
   };
 
   render() {

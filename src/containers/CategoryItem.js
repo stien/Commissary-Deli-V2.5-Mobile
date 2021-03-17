@@ -59,7 +59,9 @@ const CategoryItem = (props: Props) => {
     <TouchableOpacity
       onPress={() =>
         navigation.navigate(mainStack.products, {id: item.id, name: item.name})
-      }
+      } 
+
+
       style={[{width: widthTouch}, style && style]}>
       <View style={viewBorder}>
         <Image

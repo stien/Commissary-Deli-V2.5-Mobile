@@ -9,10 +9,9 @@ import { Platform } from 'react-native';
  * @returns {Promise<R>}
  */
 const get = (url, options = {}) => {
-  console.log(' GET ', url)
   return new Promise((resolve, reject) => {
-    let baseURL = configApi.API_ENDPOINT + '/wp-json' + url;
-
+    const v =  Math.floor(Math.random()*90000) + 10000;
+    let baseURL = configApi.API_ENDPOINT + '/wp-json' + url+'&v='+v;
     const isWC = url.indexOf('/wc') === 0;
     const isQuery = url.indexOf('?') >= 0;
     const isAuth =
@@ -23,6 +22,7 @@ const get = (url, options = {}) => {
         configApi.CONSUMER_KEY
       }&consumer_secret=${configApi.CONSUMER_SECRET}`;
     }
+
     fetch(baseURL, {
       ...options,
       method: 'GET',
@@ -40,8 +40,7 @@ const get = (url, options = {}) => {
         if (data.code) {
           reject(new Error(data.message));
         } else {
-          resolve(data);
-          console.log('ALL -- dataaaa 2',data)
+          resolve(data);       
         }
       })
       .catch((error) => {
@@ -58,15 +57,15 @@ const get = (url, options = {}) => {
  * @returns {Promise<R>}
  */
 const post = (url, data, method = 'POST') => {
-
-  console.log('Post Data : ', data)
   return new Promise((resolve, reject) => {
     // To JS Object
     if (isImmutable(data)) {
       data = data.toJS();
     }
+     
 
-    let baseURL = configApi.API_ENDPOINT + '/wp-json' + url;
+    const v =  Math.floor(Math.random()*90000) + 10000;
+    let baseURL = configApi.API_ENDPOINT + '/wp-json' + url +'&v=' + v ;
 
     const isWC = url.indexOf('/wc') === 0;
     const isDigits = url.indexOf('/digits') === 0;
@@ -79,7 +78,6 @@ const post = (url, data, method = 'POST') => {
         configApi.CONSUMER_KEY
       }&consumer_secret=${configApi.CONSUMER_SECRET}`;
     }
-
     fetch(baseURL, {
       method: method,
       headers: {
@@ -103,8 +101,10 @@ const post = (url, data, method = 'POST') => {
         if (result.code) {
           if (isDigits && (result.code === '1' || result.code === 1)) {
             resolve(result);
+            alert('Ok')
           } else {
             reject(new Error(result.message));
+            alert('Reject')
           }
         } else {
           resolve(result);

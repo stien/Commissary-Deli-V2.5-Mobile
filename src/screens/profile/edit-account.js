@@ -28,7 +28,6 @@ class EditAccount extends React.Component {
         first_name: user.first_name || '',
         last_name: user.last_name || '',
         email: user.user_email || '',
-        contact_number: user.contact_number || '',
       },
       errors: null,
     };
@@ -80,7 +79,7 @@ class EditAccount extends React.Component {
       auth: {pendingUpdateCustomer},
     } = this.props;
     const {data, errors} = this.state;
-    const {first_name, last_name, email, contact_number} = data;
+    const {first_name, last_name, email} = data;
 
     return (
       <ThemedView isFullView>
@@ -111,13 +110,6 @@ class EditAccount extends React.Component {
                 onChangeText={(value) => this.changeData('email', value)}
                 error={errors && errors.email}
                 keyboardType="email-address"
-              />
-              <Input
-                label={'contact number'}
-                value={contact_number}
-                onChangeText={(value) => this.changeData('contact_number', value)}
-                error={errors && errors.contact_number}
-                keyboardType="number-pad"
               />
               <Button
                 title={t('common:text_save')}

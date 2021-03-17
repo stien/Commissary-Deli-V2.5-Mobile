@@ -28,7 +28,7 @@ const Grid = ({
   const heightImage = (widthImage * height) / width;
 
   return (
-    <View style={[styles.container, {marginHorizontal: -pad}]}>
+    <View style={[styles.container, {marginHorizontal: -pad}]} >
       {data.map((item, index) => (
         <CategoryItem
           key={item.id}

@@ -10,7 +10,7 @@ import fonts, {lineHeights, sizes} from 'src/components/config/fonts';
 import {margin} from 'src/components/config/spacing';
 
 
-const LBcheck = ['deli cheese', 'salads', 'Turkey', 'ham', 'Beef', 'Chicken', 'italian meats','salami', 'Pastrami', 'german meats', 'italian meats', 'Bologna']
+const LBcheck = ['deli cheese','salads','Turkey','ham','Beef','Chicken','italian meats','salami','Beef','Pastrami','german meats', 'italian meats','Bologna','german meats']
 export function Price(props) {
   const {price_format, h4, type, isPercentSale, style, name1 } = props;
   const {t} = useTranslation();

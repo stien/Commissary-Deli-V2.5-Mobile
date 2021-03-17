@@ -49,8 +49,11 @@ function CartScreen(props) {
     dispatch,
     navigation,
   } = props;
+  
   React.useEffect(() => {
+   console.log('  This is a cart screen ')
     dispatch(getCart());
+    //  setTimeout(() =>  timer() ,2000)
   }, []);
 
   const subtitleHeader =
@@ -62,7 +65,7 @@ function CartScreen(props) {
       ? values(data).filter(value => typeof value === 'object')
       : [];
   const listing =  lists.filter(x => x.quantity >= 1)
-  console.log('Listing',  listing)
+  console.log('Listing',  listing)    
   const widthButton = configs.toggleWishlist ? 140 : 70;
   const webviewCheckout = configs?.webviewCheckout ?? true;
 
@@ -143,7 +146,7 @@ function CartScreen(props) {
                 removeClippedSubviews={false}
                 keyExtractor={item => item.key}
                 data={listing}
-                renderItem={({item, index}) =>
+                renderItem={({item, index}) => 
                   // item.quantity < 1 ?
                   // null
                   // :
@@ -172,7 +175,7 @@ function CartScreen(props) {
             style={styles.loginScreenButton}
               title={"[+] add item"}
               underlayColor="#f194ff"
-              onPress={() => navigation.navigate(homeTabs.home_drawer)}
+              onPress={() =>     dispatch(getCart()) }
             />
                 }
               />
@@ -215,8 +218,8 @@ const styles = StyleSheet.create({
     marginVertical: margin.large,
   },
   loginScreenButton:{
-    marginRight:100,
-    marginLeft:100,
+    marginRight:450,
+    marginLeft:450,
    marginTop:20,
     paddingTop:10,
     paddingBottom:20,

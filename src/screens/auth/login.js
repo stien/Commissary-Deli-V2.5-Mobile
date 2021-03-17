@@ -98,7 +98,7 @@ class LoginScreen extends React.Component {
                     onPress={this.handleLogin}
                     containerStyle={styles.margin}
                   />
-                  <Text
+                  {/*<Text
                     onPress={() => navigation.navigate(authStack.forgot)}
                     style={styles.textForgot}
                     medium>
@@ -111,19 +111,12 @@ class LoginScreen extends React.Component {
                     </Text>
                     <Divider style={styles.divOr} />
                   </View>
-                  <SocialMethods style={styles.viewSocial} />
+                  <SocialMethods style={styles.viewSocial} />*/}
                 </Container>
               </ScrollView>
             </KeyboardAvoidingView>
             <Container style={styles.margin}>
-              <Text h6 colorThird style={styles.textAccount}>
-                {t('auth:text_have_account')}
-              </Text>
-              <Button
-                title={t('auth:text_register')}
-                type="outline"
-                onPress={() => navigation.navigate(authStack.register)}
-              />
+             
             </Container>
           </ThemedView>
         )}

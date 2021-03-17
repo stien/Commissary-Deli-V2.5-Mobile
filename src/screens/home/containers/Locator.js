@@ -10,6 +10,7 @@ import {Text, ListItem, Modal} from '../../../components';
 import Button from '../../../containers/Button';
 import {withTranslation} from 'react-i18next';
 import {compose} from 'redux';
+import { isLoginSelector, authSelector } from '../../../modules/auth/selectors';
 
 import {
   templatesSelector,
@@ -69,7 +70,7 @@ class Locator extends Component {
                     { text: "OK", onPress: () => {
                         this.OkChange(x)
                         this.handleSelect(selectedTemplate)
-                        } }
+                    }}
                 ],
                 { cancelable: false }
             );
@@ -79,7 +80,7 @@ class Locator extends Component {
     OkChange = (x) => {
       console.log('x ===', x);
         this.props.dispatch(setLocation(x))
-        this.props.dispatch(GetVeggies(x.slug))
+        // this.props.dispatch(GetVeggies(x.slug))
         this.props.dispatch(clearCart())
         this.setState({
             visible:false
@@ -87,7 +88,7 @@ class Locator extends Component {
     }
 
     render() {
-        const { Locator } = this.props;
+         const { Locator ,isLogin} = this.props;
         const {templates, active: activeState, t} = this.props;
         const {visible, active} = this.state;
         const Loc = Locator.Location;   
@@ -95,6 +96,7 @@ class Locator extends Component {
             <>
                 <View >
                     <TouchableOpacity
+                        disabled={isLogin}
                         style={{ height: 40, paddingVertical: 2, paddingHorizontal: 20, borderRadius: 5, backgroundColor: 'white', justifyContent: 'center', alignItems: 'center', alignSelf: "center", marginVertical: 10 }}
                         onPress={() => {
                             this.props.dispatch(fetchLocation());
@@ -107,63 +109,12 @@ class Locator extends Component {
                     </TouchableOpacity>
                 </View>
 
-                {/* <Modal
-                    transparent={true}
-                    animationType={'none'}
-                    visible={this.state.visible}
-                    onRequestClose={() => {
-                        this.setState({ visible: false })
-                    }}>
-                    <View style={styles.modalBackground}>
-                        <View style={{ height: '40%', width: '95%', backgroundColor: '#ffffff94', borderRadius: 10 }}>
-                        <ScrollView>
-                            <TouchableOpacity
-                                onPress={() => this.setState({ visible: false })}
-                                style={{ height: 30, width: 30, justifyContent: 'center', alignItems: 'center', backgroundColor: 'black', alignSelf: 'flex-end' }}>
-                                <Text style={{ color: 'white', fontWeight: 'bold' }}>
-                                    X
-                               </Text>
-                            </TouchableOpacity>
-
-                            {Loc.length  <= 0   ? 
-                           
-                           <ActivityIndicator size='large'/>
-                            :
-                            <ScrollView>
-                                {Loc.map(x => {
-                                    return (
-                                        <View style={styles.Shadow}>
-                                            <TouchableOpacity
-                                             onPress={()=>  this.changeLocation(x)}
-                                                style={{ justifyContent: 'center', alignItems: 'center', height: 40, width: 200, borderRadius: 4,marginTop:10, backgroundColor: x.name == Locator.selectedLocation.name ? '#cae3fc' : 'white', alignSelf: 'center' }}>
-                                                <Text style={{ fontSize: 14, fontWeight: 'bold', color: 'black' }}>
-                                                    {x.name}
-                                                </Text>
-                                            </TouchableOpacity>
-                                            
-                                        </View>
-                                    )
-                                })}   
-                            </ScrollView>
-                            }
-                         </ScrollView>
-                        </View>
-                    </View>
-                </Modal> */}
+             
         <Modal
           visible={visible}
           setModalVisible={() =>
             this.setState({visible: false, active: activeState})
           }
-        //   topRightElement={
-        //     <Button
-        //       onPress={this.handleSelect}
-        //     //  title={t('common:text_select')}
-        //      title={'Select'}
-        //       size={'small'}
-        //       buttonStyle={styles.button}
-        //     />
-        //   }
           >
           <ScrollView>
             <View style={styles.viewList}>
@@ -179,14 +130,6 @@ class Locator extends Component {
                       type: 'feather',
                     }
                   }
-                //   titleProps={
-                //     !template == active
-                //       ? {
-                //           colorSecondary: true,
-                //         }
-                //       : null
-                //   }
-                //   onPress={() => this.setState({active: template})}
                    onPress={()=>  this.changeLocation(template)}
                 />
               ))}
@@ -200,12 +143,7 @@ class Locator extends Component {
 
 
 
-// const mapStateToProps = (state) => {
-//   return {
-//     templates: templatesSelector(state),
-//     active: activeTemplateSelector(state),
-//   };s
-// };
+
 
 const mapStateToProps = (state) => ({
     Locator: LocationSelector(state),
@@ -213,6 +151,7 @@ const mapStateToProps = (state) => ({
     data: cartSelector(state).toJS(),
     templates: templatesSelector(state),
     active: activeTemplateSelector(state),
+    isLogin:isLoginSelector(state) 
 });
 
 // export default connect(mapStateToProps)(Locator);

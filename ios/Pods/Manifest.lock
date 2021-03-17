@@ -333,6 +333,8 @@ PODS:
   - react-native-onesignal (3.7.3):
     - OneSignal (= 2.13.1)
     - React (< 1.0.0, >= 0.13.0)
+  - react-native-print (0.6.0):
+    - React
   - react-native-restart (0.0.17):
     - React
   - react-native-safe-area-context (3.0.2):
@@ -434,6 +436,8 @@ PODS:
     - React
   - RNScreens (2.8.0):
     - React
+  - RNStarPrnt (1.0.0):
+    - React
   - RNVectorIcons (6.6.0):
     - React
   - Yoga (1.14.0)
@@ -481,6 +485,7 @@ DEPENDENCIES:
   - react-native-fbsdk (from `../node_modules/react-native-fbsdk`)
   - "react-native-netinfo (from `../node_modules/@react-native-community/netinfo`)"
   - react-native-onesignal (from `../node_modules/react-native-onesignal`)
+  - react-native-print (from `../node_modules/react-native-print`)
   - react-native-restart (from `../node_modules/react-native-restart`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-splash-screen (from `../node_modules/react-native-splash-screen`)
@@ -508,6 +513,7 @@ DEPENDENCIES:
   - RNRate (from `../node_modules/react-native-rate`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
+  - RNStarPrnt (from `../node_modules/react-native-star-prnt`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -581,6 +587,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/netinfo"
   react-native-onesignal:
     :path: "../node_modules/react-native-onesignal"
+  react-native-print:
+    :path: "../node_modules/react-native-print"
   react-native-restart:
     :path: "../node_modules/react-native-restart"
   react-native-safe-area-context:
@@ -635,6 +643,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
     :path: "../node_modules/react-native-screens"
+  RNStarPrnt:
+    :path: "../node_modules/react-native-star-prnt"
   RNVectorIcons:
     :path: "../node_modules/react-native-vector-icons"
   Yoga:
@@ -688,6 +698,7 @@ SPEC CHECKSUMS:
   react-native-fbsdk: 00c15d138bba6d4efa628670886fc58cec858c19
   react-native-netinfo: 9b9929fcfa4aabe92f49a9fb3f25394cc8721e87
   react-native-onesignal: ece470306f7486853454793e954ac00eaa28f2dd
+  react-native-print: d2d083f2305faacfba12d3896ec6ca72303da2b2
   react-native-restart: 3b23471050bde7f392395703c4a3f959e2b0ff8e
   react-native-safe-area-context: c23e140ee9a482e89991798aed110fbffefb2f51
   react-native-splash-screen: 200d11d188e2e78cea3ad319964f6142b6384865
@@ -715,10 +726,11 @@ SPEC CHECKSUMS:
   RNRate: a747cbaa6040d72994861864c988037fe0696548
   RNReanimated: b5ccb50650ba06f6e749c7c329a1bc3ae0c88b43
   RNScreens: 62211832af51e0aebcf6e8c36bcf7dd65592f244
+  RNStarPrnt: decb5f37e9d77c2785e09ff3614d25a29d1ea5d1
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
   Yoga: 7740b94929bbacbddda59bf115b5317e9a161598
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 38b929b19ec152a989cd3ebaf111d10d20ceaf54
+PODFILE CHECKSUM: d3bb9d1e447dca936eef504cbf9ef871bb437a57
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.0

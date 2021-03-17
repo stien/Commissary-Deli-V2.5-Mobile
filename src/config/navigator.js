@@ -11,7 +11,7 @@ export const homeDrawer = {
 
 export const homeTabs = {
   home_drawer: 'HomeDrawer',
-  wish_list: 'WishListStack',
+
   cart: 'CartStack',
   me: 'ProfileStack',
 };
@@ -26,6 +26,7 @@ export const mainStack = {
   webview_checkout: 'WebviewCheckout',
   webview_payment: 'WebviewPayment',
   webview_thank_you: 'WebviewThankYou',
+  webview_boh: 'WebviewBoh',
 
   search: 'SearchScreen',
   products: 'ProductsScreen',

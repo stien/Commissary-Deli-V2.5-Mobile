@@ -215,11 +215,11 @@ componentDidMount() {
             title={t('cart:text_payment_method')}
             subTitle={order.payment_method_title}
           />
-          {/*<AddressInfo
+          <AddressInfo
             title={t('profile:text_billing_address')}
             address={prepareAddress(order.billing, countries)}
             isBilling
-          />*/}
+          />
           {this.renderListProduct()}
           {order.customer_note ? (
             <ContainerView title={t('profile:text_note_order')}>

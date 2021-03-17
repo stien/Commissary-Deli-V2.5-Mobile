@@ -1,0 +1,5 @@
+#import <Foundation/Foundation.h>
+@interface PodsDummy_Pods_Commissary_Deli_Kiosk_Commissary_Deli_KioskTests : NSObject
+@end
+@implementation PodsDummy_Pods_Commissary_Deli_Kiosk_Commissary_Deli_KioskTests
+@end

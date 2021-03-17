@@ -9,6 +9,7 @@ import {
   addCoupon,
   removeCoupon,
 } from './service';
+// import { addToCart } from './actions'
 import {cartKeySelector} from './selectors';
 /**
  * Add to cart saga REST API
@@ -19,7 +20,7 @@ function* addToCartSaga({payload}) {
   try {
     const cartKey = yield select(cartKeySelector);
     const data = yield call(addToCart, item, cartKey);
-    console.log('addTocart',data)
+    console.log('addTocart ============ ',data.cart_key)
     yield call(cb, {success: true});
     yield put({
       type: Actions.ADD_TO_CART_SUCCESS,
@@ -88,7 +89,7 @@ function* removeFromCartSaga({payload}) {
  * @returns {IterableIterator<*>}
  */
 function* updateQuantityCartSaga({payload}) {
-
+  
   try {
     const cartKey = yield select(cartKeySelector);
     yield call(updateCartQuantity, payload, cartKey);
@@ -131,6 +132,7 @@ function* getCartSaga() {
         cart_key: cartKey,
       };
       const data = yield call(getCart, query);
+      console.log(' getCartSaga  ====== ', data)
       yield put({type: Actions.GET_CART_SUCCESS, payload: data});
     } else {
       yield put({type: Actions.GET_CART_ERROR});
@@ -208,3 +210,5 @@ export default function* cartSaga() {
   yield takeEvery(Actions.ADD_COUPON, addCouponSaga);
   yield takeEvery(Actions.REMOVE_COUPON, removeCouponSaga);
 }
+
+      // return state.set(['cart_data','items',[payload.cart_item_key] ], payload.item);

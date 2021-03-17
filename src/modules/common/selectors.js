@@ -124,7 +124,7 @@ export const columnProductSelector = createSelector(
     const objCol = listSwitch.find((switchValue) => switchValue.view === data)
       ? listSwitch.find((switchValue) => switchValue.view === data)
       : listSwitch[0];
-    return objCol.col;
+    return 3;
   },
 );
 
@@ -205,7 +205,6 @@ export const dataConfigSelector = createSelector(
       const stringData = JSON.parse(data.get('data'));
 
       const arrayData = stringData.map((item) => {
-        console.log('Item :::',item)
         const {spacing, layout, fields} = item;
 
         let valueSpacing = {};
@@ -228,7 +227,6 @@ export const dataConfigSelector = createSelector(
               [field.key]: field.value,
             };
           });
-          console.log('Fields corner : ', fields)
         }
         return {
           id: item.id,

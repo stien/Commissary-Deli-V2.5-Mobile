@@ -83,11 +83,10 @@ class ProductsScreen extends React.Component {
   }
 
   componentDidMount() {
-   
     this.fetchProducts();
-    const { dispatch, Locator } = this.props;
-    dispatch(GetVeggies(Locator.selectedLocation.slug))
-     console.log('Hellllllllllooooooo')
+       const { dispatch, Locator } = this.props;
+      dispatch(GetVeggies(Locator.selectedLocation.slug))
+      
   }
 
   componentDidUpdate(prevProps) {
@@ -235,8 +234,7 @@ class ProductsScreen extends React.Component {
         />
         {loading ? (
           <Loading/>
-        ) : 
-        data.length ? (
+        ) : data.length ? (
           <View style={styles.viewList}>
             <Container style={styles.viewRefineSwitch}>
               <Refine
@@ -250,7 +248,7 @@ class ProductsScreen extends React.Component {
               <SwitchProduct/>
             </Container>
             <CategoryList
-              onPress={this.handleCategoryPress}
+              // onPress={this.handleCategoryPress}
               data={
                 category && category.categories ? category.categories : null
               }

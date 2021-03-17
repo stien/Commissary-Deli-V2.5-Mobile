@@ -6,6 +6,7 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <Firebase.h>
 #import "RNSplashScreen.h"
+#import <React/RCTLinkingManager.h>
 
 #if DEBUG
 #import <FlipperKit/FlipperClient.h>
@@ -64,12 +65,13 @@ static void InitializeFlipper(UIApplication *application) {
 #endif
 }
 
-- (BOOL)application:(UIApplication *)app
+- (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
             options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
   {
-    return [[FBSDKApplicationDelegate sharedInstance]application:app
-                                                         openURL:url
-                                                         options:options];
+    return [RCTLinkingManager application:application openURL:url
+      options:options];
   }
+
+
 @end

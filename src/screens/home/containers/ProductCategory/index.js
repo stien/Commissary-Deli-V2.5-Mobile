@@ -57,6 +57,7 @@ class ProductCategory extends React.Component {
     if (this.props.fields) {
       this.fetchData();
     }
+
   }
 
   componentWillUnmount() {
